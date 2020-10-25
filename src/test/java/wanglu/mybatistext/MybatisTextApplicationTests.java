@@ -84,4 +84,17 @@ class MybatisTextApplicationTests {
         System.out.println(page.hasNext());//是否有下一页
         System.out.println(page.hasPrevious());//是否有上一页
     }
+    //删除操作 物理删除
+    @Test
+    public void testDeleteById(){
+        int i = userMapper.deleteById(2L);
+        System.out.println(i);
+    }
+    //批量删除
+    @Test
+    public void testDeleteBatchIds(){
+        int i = userMapper.deleteBatchIds(Arrays.asList(2L, 3L));
+        System.out.println(i);
+    }
+    //逻辑删除 表中数据还存在 表中存在逻辑删除标志
 }

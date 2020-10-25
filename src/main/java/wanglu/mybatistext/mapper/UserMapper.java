@@ -6,4 +6,5 @@ import wanglu.mybatistext.entity.User;
 @Repository
 public interface UserMapper extends BaseMapper<User> {
 
+    void deleteBatchIds();
 }

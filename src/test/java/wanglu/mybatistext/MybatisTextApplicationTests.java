@@ -1,5 +1,6 @@
 package wanglu.mybatistext;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -87,7 +88,7 @@ class MybatisTextApplicationTests {
     //删除操作 物理删除
     @Test
     public void testDeleteById(){
-        int i = userMapper.deleteById(2L);
+        int i = userMapper.deleteById(1L);
         System.out.println(i);
     }
     //批量删除
@@ -96,5 +97,42 @@ class MybatisTextApplicationTests {
         int i = userMapper.deleteBatchIds(Arrays.asList(2L, 3L));
         System.out.println(i);
     }
-    //逻辑删除 表中数据还存在 表中存在逻辑删除标志
+    //Mp实现复杂查询操作
+    @Test
+    public void testSeleteQuery(){
+        //创建QueryWrapper对象
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        //通过QueryWrapper设置条件
+        //ge gt le lt
+//        queryWrapper.ge("age", 30);
+//        List<User> users = userMapper.selectList(queryWrapper);
+//        System.out.println(users);
+        // eq ne
+//        queryWrapper.eq("name", "Tom");
+//        List<User> users = userMapper.selectList(queryWrapper);
+//        System.out.println(users);
+//        queryWrapper.ne("name", "Tom");
+//        List<User> users = userMapper.selectList(queryWrapper);
+//        System.out.println(users);
+        //between
+//        queryWrapper.between("age", 20, 30);
+//        List<User> users = userMapper.selectList(queryWrapper);
+//        System.out.println(users);
+        //like 模糊查询
+//        queryWrapper.like("name", "T");
+//        List<User> users = userMapper.selectList(queryWrapper);
+//        System.out.println(users);
+        //orderBy 排序
+//        queryWrapper.orderByDesc("id");
+//        List<User> users = userMapper.selectList(queryWrapper);
+//        System.out.println(users);
+        //last
+//        queryWrapper.last("limit 1");
+//        List<User> users = userMapper.selectList(queryWrapper);
+//        System.out.println(users);
+        //指定要查询的列
+        queryWrapper.select("name", "age");
+        List<User> users = userMapper.selectList(queryWrapper);
+        System.out.println(users);
+    }
 }

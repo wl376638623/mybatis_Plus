@@ -71,7 +71,17 @@ class MybatisTextApplicationTests {
     public void testPage(){
         //1创建对象
         //2传入两个参数；当前页和每页显示记录数
-        Page<User> page = new Page<>();
+        Page<User> page = new Page<>(1,3);
+        //调用mp分页查询的方法
+        userMapper.selectPage(page, null);
+        //通过page对象获取分页数据
+        System.out.println(page.getCurrent());//当前页
+        System.out.println(page.getRecords());//每页数据list集合
+        System.out.println(page.getSize());//每页数据记录数
+        System.out.println(page.getTotal());//总记录数
+        System.out.println(page.getPages());//总页数
 
+        System.out.println(page.hasNext());//是否有下一页
+        System.out.println(page.hasPrevious());//是否有上一页
     }
 }
